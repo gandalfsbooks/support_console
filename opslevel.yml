@@ -12,7 +12,7 @@ service:
   aliases: 
   tags: 
   repositories:
-  - name: OL-Demo/support_console
+  - name: ianroydemo/support_console
     path: "/"
     provider: github
   tools:
