@@ -10,7 +10,11 @@ service:
   framework: Sinatra
   description: 'Used by the Customer Support team to manage inbound support requests. '
   aliases: 
+  - The Support Console
+  - console_support
   tags: 
+  - key: pii
+    value: 'true'
   repositories:
   - name: ianroydemo/support_console
     path: "/"
