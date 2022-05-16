@@ -16,7 +16,7 @@ service:
   - key: pii
     value: 'true'
   repositories:
-  - name: ianroydemo/support_console
+  - name: gandalfsbooks/support_console
     path: "/"
     provider: github
   tools:
