@@ -45,8 +45,3 @@ service:
     url: https://opslevel.pagerduty.com/services/P88H2N0
     environment: Production
   dependencies:
-  - alias: order_workflow_service
-    notes: |
-      Required from Order Workflow Service:
-      - /order_status
-      - /order_information
