@@ -1,0 +1,77 @@
+dependencies:
+  bundler:
+    without:
+      - development
+      - test
+      - debug
+  pre:
+    - mkdir tmp/
+    - cp -R /var/cache/ tmp/cache
+deploy:
+  override:
+    - ./script/deploy
+  pre:
+    - ./script/notify_deploy_start
+  post:
+    - ./script/notify_deploy_end
+  variables:
+    -
+      name: RUN_MIGRATIONS
+      title: Run database migrations on deploy
+      default: 1
+    -
+      name: REGION
+      title: Run a deploy in a given region
+      select:
+        - east
+        - west
+        - north
+  max_commits: 5
+  interval: 5m
+  retries: 2
+rollback:
+  override:
+    - ./script/rollback
+  pre:
+    - ./script/notify_rollback_start
+  post:
+    - ./script/notify_rollback_end
+kubernetes:
+  namespace: my-app-production
+  context: tier4
+machine:
+  environment:
+    key: val # things added as environment variables
+machine:
+  directory: scripts/deploy/
+machine:
+  cleanup: false
+ci:
+  require:
+    - ci/circleci
+  allow_failures:
+    - ci/circleci
+  blocking:
+    - soc/compliance
+merge:
+  revalidate_after: 12m30s
+  require:
+    - continuous-integration/travis-ci/push
+  ignore:
+    - codeclimate
+  method: squash
+  max_divergence:
+    commits: 50
+tasks:
+  restart:
+    action: "Restart Application"
+    description: "Sometimes needed if you want the application to restart but don't want to ship any new code."
+    steps:
+      - ssh deploy@myserver.example.com 'touch myapp/restart.txt'
+review:
+  checklist:
+    - >
+      Do you know if it is safe to revert the code being shipped? What happens if we need to undo this deploy?
+    - Has the Docs team been notified of any major changes to the app?
+    - Is the app stable right now?
+
