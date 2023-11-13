@@ -51,3 +51,4 @@ service:
       Required from Order Workflow Service:
       - /order_status
       - /order_information
+  - alias: employee_directory
