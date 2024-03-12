@@ -4,18 +4,23 @@ service:
   name: Support Console
   lifecycle: end-of-life
   tier: tier_3
-  product: 
-  owner: internal_tools
+  product:
+  owner: internal_tooling
   system: support
   language: Ruby
   framework: Sinatra
   description: 'Used by the Customer Support team to manage inbound support requests. '
-  aliases: 
-  - The Support Console
+  aliases:
   - console_support
-  tags: 
+  - Support Console
+  - The Support Console
+  tags:
+  - key: is_public
+    value: 'false'
   - key: pii
     value: 'true'
+  - key: version
+    value: 2.7.0
   repositories:
   - name: gandalfsbooks/support_console
     path: "/"
@@ -24,7 +29,7 @@ service:
   - name: Kubernetes
     category: orchestrator
     url: https://deploy.gandalfsbooks.com/supportconsole
-    environment: 
+    environment:
   - name: Sentry
     category: errors
     url: https://gandalfsbooks.sentry.com/supportconsole_service/production
@@ -36,7 +41,7 @@ service:
   - name: Pingdom
     category: health_checks
     url: https://gandalfsbooks.pingdom.com/supportconsole
-    environment: 
+    environment:
   - name: Splunk
     category: logs
     url: https://logs.gandalfsbooks.com/supportconsole_service
@@ -51,3 +56,8 @@ service:
       Required from Order Workflow Service:
       - /order_status
       - /order_information
+  - alias: customer_support_ticketing_system
+  - alias: customer_support_emailing_system
+  alert_sources:
+  - type: pagerduty
+    external_id: PUTB92T
