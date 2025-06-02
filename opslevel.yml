@@ -1,6 +1,7 @@
 version: 1
-service:
+component:
   name: Support Console
+  type: library
   lifecycle: end-of-life
   tier: tier_3
   product:
