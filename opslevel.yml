@@ -2,7 +2,7 @@
 version: 1
 component:
   name: Support Console
-  type: third_party_vendors
+  type: frontend
   lifecycle: end-of-life
   tier: tier_3
   product:
