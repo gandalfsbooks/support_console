@@ -6,7 +6,7 @@ component:
   lifecycle: end-of-life
   tier: tier_3
   product:
-  owner: internal_tooling
+  owner: internal_toolings
   system: support
   language: Ruby
   framework: Sinatra
