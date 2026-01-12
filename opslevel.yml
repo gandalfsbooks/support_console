@@ -61,6 +61,7 @@ component:
       - /order_information
   - alias: customer_support_ticketing_system
   - alias: customer_support_emailing_system
+  - alias: analytics-backups-9138-ap-northeast-1
   alert_sources:
   - type: pagerduty
     external_id: PUTB92T
